@@ -33,7 +33,8 @@ function setHistorial() {
   let items = '';
 
   if (user.historial.length) {
-    user.historial.forEach((item) => {
+    const historial = [...user.historial];
+    historial.reverse().forEach((item) => {
       items += '';
       items += `
       <div class="historial-item d-flex justify-content-between">

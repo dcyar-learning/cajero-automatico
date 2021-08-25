@@ -1,20 +1,20 @@
 var user = null;
 
 var cuentas = [
-  {
-    nombres: 'Homero Simpson',
-    correo: 'homero@mail.com',
-    contrasena: '123',
-    saldo: 20,
-    historial: [],
-  },
-  {
-    nombres: 'Marge Simpson',
-    correo: 'marge@mail.com',
-    contrasena: '123',
-    saldo: 20,
-    historial: [],
-  },
+  // {
+  //   nombres: 'Homero Simpson',
+  //   correo: 'homero@mail.com',
+  //   contrasena: '123',
+  //   saldo: 20,
+  //   historial: [],
+  // },
+  // {
+  //   nombres: 'Marge Simpson',
+  //   correo: 'marge@mail.com',
+  //   contrasena: '123',
+  //   saldo: 20,
+  //   historial: [],
+  // },
 ];
 
 function setAccount(account) {

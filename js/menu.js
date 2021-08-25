@@ -4,7 +4,7 @@ function toggleMenu() {
   document.getElementById('features').classList.toggle('d-none');
 }
 
-toggleMenu();
+// toggleMenu();
 
 function showView(currentView) {
   const views = [
@@ -25,7 +25,7 @@ function showView(currentView) {
   document.getElementById(currentView).classList.remove('d-none');
 }
 
-showView('login');
+showView('retiro');
 
 const routes = document.getElementsByClassName('nav-link');
 

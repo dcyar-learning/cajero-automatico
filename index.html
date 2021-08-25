@@ -164,7 +164,28 @@
             </button>
           </form>
         </section>
-        <section id="retiro">retiro</section>
+        <section id="retiro">
+          <p id="retiro-message" class="d-none my-2"></p>
+          <form id="formRetiro">
+            <div class="form-field">
+              <label for="retiro-monto">Monto (U$D):</label>
+              <input
+                type="number"
+                name="retiro-monto"
+                id="retiro-monto"
+                min="1"
+                step="1"
+                value="1"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-block btn-primary my-1 pointer"
+            >
+              Retirar
+            </button>
+          </form>
+        </section>
         <section id="transferencia">transferencia</section>
       </section>
     </main>

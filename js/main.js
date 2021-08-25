@@ -19,7 +19,7 @@ document
 
     user.saldo += parseInt(amount.value);
 
-    setUserCash(user.saldo);
+    setUserCash();
 
     user.historial.push({
       tipo: 'deposito',
@@ -28,12 +28,64 @@ document
       fecha: new Date().toDateString(),
     });
 
-    setHistorial(user.historial);
+    setHistorial();
 
     alertMessage(
       depositMessage,
       'text-success',
       `Se ha hecho el depósito de U$D ${amount.value} a tu cuenta.`,
+      3000
+    );
+
+    amount.value = 1;
+  });
+
+// Retiro
+document
+  .getElementById('formRetiro')
+  .addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const retiroMessage = document.getElementById('retiro-message');
+    const amount = this.elements['retiro-monto'];
+
+    if (parseInt(amount.value) > user.saldo) {
+      alertMessage(
+        retiroMessage,
+        'text-danger',
+        'No tienes el saldo suficiente',
+        2000
+      );
+      return;
+    }
+
+    if (user.saldo - parseInt(amount.value) < 10) {
+      alertMessage(
+        retiroMessage,
+        'text-danger',
+        'Tu saldo no puede quedarse con menos de U$D 10',
+        2000
+      );
+      return;
+    }
+
+    user.saldo -= parseInt(amount.value);
+
+    setUserCash();
+
+    user.historial.push({
+      tipo: 'retiro',
+      destino: '',
+      monto: parseInt(amount.value),
+      fecha: new Date().toDateString(),
+    });
+
+    setHistorial();
+
+    alertMessage(
+      retiroMessage,
+      'text-success',
+      `Se ha hecho el retiro de U$D ${amount.value} correctmanete.`,
       3000
     );
 

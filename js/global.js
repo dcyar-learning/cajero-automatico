@@ -5,7 +5,7 @@ var cuentas = [
     nombres: 'Homero Simpson',
     correo: 'homero@mail.com',
     contrasena: '123',
-    saldo: 10,
+    saldo: 20,
     historial: [],
   },
 ];
@@ -17,16 +17,16 @@ function setAccount(account) {
   setUserCash(user.saldo);
 }
 
-function setUserCash(cash) {
-  document.getElementById('currentUserCash').innerText = cash;
+function setUserCash() {
+  document.getElementById('currentUserCash').innerText = user.saldo;
 }
 
-function setHistorial(historial) {
+function setHistorial() {
   const historialList = document.getElementById('historial-list');
   let items = '';
 
-  if (historial.length) {
-    historial.reverse().forEach((item) => {
+  if (user.historial.length) {
+    user.historial.reverse().forEach((item) => {
       items += '';
       items += `
       <div class="historial-item d-flex justify-content-between">
@@ -41,7 +41,7 @@ function setHistorial(historial) {
         <div>
           <span class="text-bold ${
             item.tipo === 'deposito' ? 'text-success' : 'text-danger'
-          }">U$D ${item.monto}</span>
+          }">${item.tipo === 'deposito' ? '+' : '-'} U$D ${item.monto}</span>
           <p class="text-sm">${item.fecha}</p>
         </div>
       </div>

@@ -9,7 +9,7 @@ loginForm.addEventListener('submit', function (event) {
   const loginMessage = document.getElementById('login-messages');
 
   if (email.value == '' || password.value == '') {
-    authMessage(
+    alertMessage(
       loginMessage,
       'text-danger',
       'Los campos de <b>correo</b> y <b>contraseña</b> son necesarios.'
@@ -23,7 +23,7 @@ loginForm.addEventListener('submit', function (event) {
   );
 
   if (!account) {
-    authMessage(
+    alertMessage(
       loginMessage,
       'text-danger',
       'No existe una cuenta con estos datos'
@@ -31,9 +31,9 @@ loginForm.addEventListener('submit', function (event) {
     return;
   }
 
-  user = account;
+  setAccount(account);
   toggleMenu();
-  showView('cuenta');
+  showView('historial');
   clearInputs([email, password]);
 });
 // End Login Form
@@ -56,7 +56,7 @@ registerForm.addEventListener('submit', function (event) {
     password.value === '' ||
     confirmPassword.value === ''
   ) {
-    authMessage(
+    alertMessage(
       registerMessage,
       'text-danger',
       'Todos los campos son requeridos.'
@@ -65,7 +65,7 @@ registerForm.addEventListener('submit', function (event) {
   }
 
   if (cuentas.find((cuenta) => cuenta.correo === email.value)) {
-    authMessage(
+    alertMessage(
       registerMessage,
       'text-danger',
       'Ya existe una cuenta con este correo'
@@ -74,7 +74,7 @@ registerForm.addEventListener('submit', function (event) {
   }
 
   if (password.value != confirmPassword.value) {
-    authMessage(
+    alertMessage(
       registerMessage,
       'text-danger',
       'Las contraseñas deben coincidir'
@@ -92,12 +92,10 @@ registerForm.addEventListener('submit', function (event) {
 
   cuentas.push(newAccount);
   user = newAccount;
+  setAccount(user);
   toggleMenu();
-  showView('cuenta');
+  showView('historial');
   clearInputs([nombres, email, password, confirmPassword]);
-
-  console.log(cuentas);
-  console.log(user);
 });
 // End Register Form
 
@@ -109,17 +107,3 @@ logout.addEventListener('click', function () {
   toggleMenu();
 });
 // End Logout
-
-function authMessage(element, clase, text) {
-  element.classList.remove('d-none');
-  element.classList.add(clase);
-  element.innerHTML = text;
-  setTimeout(() => {
-    element.classList.add('d-none');
-    element.classList.remove(clase);
-  }, 1500);
-}
-
-function clearInputs(inputs) {
-  inputs.forEach((input) => (input.value = ''));
-}

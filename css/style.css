@@ -1,13 +1,46 @@
 @import url('./lib.css');
-
 main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
 }
 
+main #auth,
+main #features {
+  height: 100%;
+}
+
+main #auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main #features {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+main #features > div,
+main #features > section {
+  width: 450px;
+  padding: 5px;
+}
+
+main #features > div {
+  margin-top: 60px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+main #features > section {
+  margin-top: 20px;
+}
+
 /* Nav Styles */
+header {
+  position: absolute;
+  background-color: darkcyan;
+}
 header nav {
   width: 50%;
   margin: auto;
@@ -15,6 +48,7 @@ header nav {
 
 header nav ul li {
   padding: 10px;
+  color: #ffffff;
 }
 
 /* Login and Register Styles */
@@ -28,8 +62,11 @@ header nav ul li {
   font-size: 2em;
 }
 
-#login form input[type='submit'],
-#registro form input[type='submit'] {
-  margin-top: 15px;
-  width: 100%;
+/* Acount View Styles */
+#cuenta {
+}
+
+#cuenta h2,
+#cuenta h2 strong {
+  font-size: 1.2em;
 }

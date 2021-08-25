@@ -1,20 +1,19 @@
 function toggleMenu() {
-  const menuAuth = document.getElementById('auth');
-
-  menuAuth.classList.toggle('d-none');
+  document.getElementById('auth-menu').classList.toggle('d-none');
+  document.getElementById('auth').classList.toggle('d-none');
+  document.getElementById('features').classList.toggle('d-none');
 }
 
-toggleMenu();
+// toggleMenu();
 
 function showView(currentView) {
   const views = [
     'login',
     'registro',
-    'cuenta',
+    'historial',
     'deposito',
     'retiro',
     'transferencia',
-    'historial',
   ];
 
   const hideViews = views.filter((v) => v != currentView);
@@ -26,7 +25,7 @@ function showView(currentView) {
   document.getElementById(currentView).classList.remove('d-none');
 }
 
-showView('cuenta');
+showView('deposito');
 
 const routes = document.getElementsByClassName('nav-link');
 

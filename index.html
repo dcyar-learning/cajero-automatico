@@ -22,20 +22,33 @@
             Transferencia
           </li>
           <li class="nav-link pointer" data-view="historial">Historial</li>
+          <li id="logout" class="pointer">Salir</li>
         </ul>
       </nav>
     </header>
     <main>
       <div id="login">
         <h3>Iniciar Sesión</h3>
+        <p id="login-messages" class="d-none"></p>
         <form id="login-form">
           <div class="form-field">
             <label for="login-email">Correo:</label>
-            <input type="text" id="login-email" name="login-email" />
+            <input
+              type="email"
+              id="login-email"
+              name="login-email"
+              value="homero@mail.com"
+            />
           </div>
           <div class="form-field">
             <label for="login-password">Contraseña:</label>
-            <input type="password" id="login-password" name="login-password" />
+            <input
+              type="password"
+              id="login-password"
+              name="login-password"
+              minlength="3"
+              value="password"
+            />
           </div>
           <p>
             Aún no tienes una cuenta?
@@ -45,6 +58,7 @@
           </p>
           <input
             type="submit"
+            id="login-btn"
             class="btn btn-primary text-light pointer"
             value="Iniciar Sesión"
           />
@@ -87,6 +101,7 @@
           </p>
           <input
             type="submit"
+            id="register-btn"
             class="btn btn-primary text-light pointer"
             value="Registrarse"
           />

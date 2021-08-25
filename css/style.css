@@ -1,5 +1,12 @@
 @import url('./lib.css');
 
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 /* Nav Styles */
 header nav {
   width: 50%;
@@ -10,7 +17,12 @@ header nav ul li {
   padding: 10px;
 }
 
-/* Login Styles */
+/* Login and Register Styles */
+#login,
+#registro {
+  width: 300px;
+}
+
 #login h3,
 #registro h3 {
   font-size: 2em;

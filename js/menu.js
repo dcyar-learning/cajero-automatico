@@ -26,7 +26,7 @@ function showView(currentView) {
   document.getElementById(currentView).classList.remove('d-none');
 }
 
-showView('login');
+showView('cuenta');
 
 const routes = document.getElementsByClassName('nav-link');
 

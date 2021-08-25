@@ -1,12 +1,10 @@
 var user = null;
-var currentView = 'login';
 
 var cuentas = [
   {
-    id: '111',
     nombres: 'Homero Simpson',
     correo: 'homero@mail.com',
-    contrasena: 'password',
+    contrasena: '123',
     saldo: 50,
     historial: [
       {

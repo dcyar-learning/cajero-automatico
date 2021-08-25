@@ -10,10 +10,6 @@
   <body>
     <header class="width-full">
       <nav>
-        <!-- <ul id="guest" class="d-flex justify-content-around">
-          <li class="nav-link pointer" data-view="login">Iniciar Sesion</li>
-          <li class="nav-link pointer" data-view="registro">Registrarse</li>
-        </ul> -->
         <ul id="auth" class="d-flex justify-content-around">
           <li class="nav-link pointer" data-view="cuenta">Mi cuenta</li>
           <li class="nav-link pointer" data-view="deposito">Depósito</li>
@@ -33,12 +29,7 @@
         <form id="login-form">
           <div class="form-field">
             <label for="login-email">Correo:</label>
-            <input
-              type="email"
-              id="login-email"
-              name="login-email"
-              value="homero@mail.com"
-            />
+            ` <input type="email" id="login-email" name="login-email" />
           </div>
           <div class="form-field">
             <label for="login-password">Contraseña:</label>
@@ -47,7 +38,7 @@
               id="login-password"
               name="login-password"
               minlength="3"
-              value="password"
+              value="123"
             />
           </div>
           <p>
@@ -66,23 +57,34 @@
       </div>
       <div id="registro">
         <h3>Crear una cuenta</h3>
+        <p id="register-message"></p>
         <form id="register-form">
           <div class="form-field">
-            <label class="text-secondary" for="registro-nombres"
-              >Nombres:</label
-            >
-            <input type="text" id="registro-nombres" name="registro-nombres" />
+            <label for="registro-nombres">Nombres:</label>
+            <input
+              type="text"
+              id="registro-nombres"
+              name="registro-nombres"
+              value="Marge Simpson"
+            />
           </div>
           <div class="form-field">
             <label for="registro-email">Correo:</label>
-            <input type="text" id="registro-email" name="registro-email" />
+            <input
+              type="text"
+              id="registro-email"
+              name="registro-email"
+              value="marge@mail.com"
+            />
           </div>
           <div class="form-field">
             <label for="registro-password">Contraseña:</label>
             <input
-              type="text"
+              type="password"
               id="registro-password"
               name="registro-password"
+              minlength="3"
+              value="123"
             />
           </div>
           <div class="form-field">
@@ -91,6 +93,8 @@
               type="password"
               id="registro-confirm-password"
               name="registro-confirm-password"
+              minlength="3"
+              value="123"
             />
           </div>
           <p>

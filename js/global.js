@@ -6,14 +6,7 @@ var cuentas = [
     correo: 'homero@mail.com',
     contrasena: '123',
     saldo: 10,
-    historial: [
-      {
-        tipo: 'deposito', // deposito, retiro, transferencia
-        hacia: '',
-        monto: 10,
-        fecha: new Date().toDateString(),
-      },
-    ],
+    historial: [],
   },
 ];
 
@@ -24,10 +17,40 @@ function setAccount(account) {
   setUserCash(user.saldo);
 }
 
-setAccount(cuentas[0]);
-
 function setUserCash(cash) {
   document.getElementById('currentUserCash').innerText = cash;
+}
+
+function setHistorial(historial) {
+  const historialList = document.getElementById('historial-list');
+  let items = '';
+
+  if (historial.length) {
+    historial.reverse().forEach((item) => {
+      items += '';
+      items += `
+      <div class="historial-item d-flex justify-content-between">
+        <div>
+          <p>Operación: ${item.tipo}</p>
+          ${
+            item.tipo === 'transferencia'
+              ? '<p>Destino: ' + item.destino + '</p>'
+              : ''
+          }
+        </div>
+        <div>
+          <span class="text-bold ${
+            item.tipo === 'deposito' ? 'text-success' : 'text-danger'
+          }">U$D ${item.monto}</span>
+          <p class="text-sm">${item.fecha}</p>
+        </div>
+      </div>
+      `;
+    });
+    historialList.innerHTML = items;
+  } else {
+    historialList.innerHTML = 'Aún no has hecho movimientos en tu cuenta';
+  }
 }
 
 function alertMessage(element, clase, text, time = 1000) {

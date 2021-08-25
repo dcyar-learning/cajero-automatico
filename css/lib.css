@@ -87,8 +87,12 @@ li {
   font-weight: 700;
 }
 
-.text-sm {
+.text-xs {
   font-size: 0.6em;
+}
+
+.text-sm {
+  font-size: 0.8em;
 }
 
 .text-md {

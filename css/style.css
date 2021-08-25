@@ -70,3 +70,22 @@ header nav ul li {
 #cuenta h2 strong {
   font-size: 1.2em;
 }
+
+/* Historial Style */
+.historial-item {
+  /* border: 1px solid rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  margin: 2px 0;
+}
+
+.historial-item div:first-child {
+  width: auto;
+}
+.historial-item div:last-child {
+  text-align: right;
+}
+
+.historial-item div:last-child {
+  text-align: right;
+}

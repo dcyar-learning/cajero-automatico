@@ -187,4 +187,5 @@ document
     );
 
     amount.value = 1;
+    to.value = '';
   });

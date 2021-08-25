@@ -33,9 +33,9 @@ document
 
     setAccount(account);
     setHistorial();
+    clearInputs([email, password]);
     toggleMenu();
     showView('historial');
-    clearInputs([email, password]);
   });
 // End Login Form
 
@@ -97,9 +97,9 @@ document
     user = newAccount;
     setAccount(user);
     setHistorial();
+    clearInputs([nombres, email, password, confirmPassword]);
     toggleMenu();
     showView('historial');
-    clearInputs([nombres, email, password, confirmPassword]);
   });
 // End Register Form
 

@@ -32,7 +32,7 @@ document
     }
 
     setAccount(account);
-    setHistorial(account.historial);
+    setHistorial();
     toggleMenu();
     showView('historial');
     clearInputs([email, password]);
@@ -96,7 +96,7 @@ document
     cuentas.push(newAccount);
     user = newAccount;
     setAccount(user);
-    setHistorial(user.historial);
+    setHistorial();
     toggleMenu();
     showView('historial');
     clearInputs([nombres, email, password, confirmPassword]);

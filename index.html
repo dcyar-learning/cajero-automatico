@@ -139,10 +139,13 @@
           </div>
         </div>
         <section id="historial">
-          <h3 class="text-bold">Historial de transacciones:</h3>
+          <h3 class="text-lg text-normal uppercase">
+            Historial de transacciones:
+          </h3>
           <div id="historial-list"></div>
         </section>
         <section id="deposito">
+          <h3 class="text-lg text-normal uppercase">Depositar dinero</h3>
           <p id="deposit-message" class="d-none my-2"></p>
           <form id="formDeposito">
             <div class="form-field">
@@ -165,6 +168,7 @@
           </form>
         </section>
         <section id="retiro">
+          <h3 class="text-lg text-normal uppercase">Retirar dinero</h3>
           <p id="retiro-message" class="d-none my-2"></p>
           <form id="formRetiro">
             <div class="form-field">
@@ -186,7 +190,38 @@
             </button>
           </form>
         </section>
-        <section id="transferencia">transferencia</section>
+        <section id="transferencia">
+          <h3 class="text-lg text-normal uppercase">Enviar dinero</h3>
+          <p id="transferencia-message" class="d-none my-2"></p>
+          <form id="formTransferencia">
+            <div class="form-field">
+              <label for="transferencia-destino">Destino:</label>
+              <input
+                type="email"
+                name="transferencia-destino"
+                id="transferencia-destino"
+                value="marge@mail.com"
+              />
+            </div>
+            <div class="form-field">
+              <label for="transferencia-monto">Monto (U$D):</label>
+              <input
+                type="number"
+                name="transferencia-monto"
+                id="transferencia-monto"
+                min="1"
+                step="1"
+                value="1"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-block btn-primary my-1 pointer"
+            >
+              Depositar
+            </button>
+          </form>
+        </section>
       </section>
     </main>
     <script src="./js/global.js"></script>

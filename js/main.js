@@ -91,3 +91,100 @@ document
 
     amount.value = 1;
   });
+
+// Transferencia
+document
+  .getElementById('formTransferencia')
+  .addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const transferenciaMessage = document.getElementById(
+      'transferencia-message'
+    );
+
+    const to = this.elements['transferencia-destino'];
+    const amount = this.elements['transferencia-monto'];
+
+    if (to.value === '') {
+      alertMessage(
+        transferenciaMessage,
+        'text-danger',
+        'La cuenta de destino es obligatorio',
+        2000
+      );
+      return;
+    }
+
+    if (to.value === user.correo) {
+      alertMessage(
+        transferenciaMessage,
+        'text-danger',
+        'No puedes transferir dinero a tu propia cuenta',
+        2000
+      );
+      return;
+    }
+
+    const toAccount = cuentas.find((cuenta) => cuenta.correo === to.value);
+
+    if (!toAccount) {
+      alertMessage(
+        transferenciaMessage,
+        'text-danger',
+        'La cuenta de destino no existe',
+        2000
+      );
+      return;
+    }
+
+    if (user.saldo < parseInt(amount.value)) {
+      alertMessage(
+        transferenciaMessage,
+        'text-danger',
+        'No tienes tanto dinero :(',
+        2000
+      );
+      return;
+    }
+
+    if (user.saldo - parseInt(amount.value) < 10) {
+      alertMessage(
+        transferenciaMessage,
+        'text-danger',
+        'No puedes transferir tanto dinero',
+        2000
+      );
+      return;
+    }
+
+    user.saldo -= parseInt(amount.value);
+
+    setUserCash();
+
+    user.historial.push({
+      tipo: 'transferencia',
+      destino: to.value,
+      monto: parseInt(amount.value),
+      fecha: new Date().toDateString(),
+    });
+
+    setHistorial();
+
+    toAccount.saldo += parseInt(amount.value);
+
+    toAccount.historial.push({
+      tipo: 'transferencia-ext',
+      desde: user.correo,
+      monto: parseInt(amount.value),
+      fecha: new Date().toDateString(),
+    });
+
+    alertMessage(
+      transferenciaMessage,
+      'text-success',
+      `Se ha hecho la transferencia de U$D ${amount.value} a ${to.value}`,
+      2500
+    );
+
+    amount.value = 1;
+  });

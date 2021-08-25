@@ -28,7 +28,7 @@ main #features > section {
 }
 
 main #features > div {
-  margin-top: 60px;
+  margin-top: 80px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -63,8 +63,6 @@ header nav ul li {
 }
 
 /* Acount View Styles */
-#cuenta {
-}
 
 #cuenta h2,
 #cuenta h2 strong {
@@ -73,7 +71,6 @@ header nav ul li {
 
 /* Historial Style */
 .historial-item {
-  /* border: 1px solid rgba(0, 0, 0, 0.2); */
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   padding: 5px;
   margin: 2px 0;

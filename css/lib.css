@@ -218,3 +218,6 @@ li {
 .my-5 {
   margin: 1.5em 0;
 }
+.uppercase {
+  text-transform: uppercase;
+}

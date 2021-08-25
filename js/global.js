@@ -8,6 +8,13 @@ var cuentas = [
     saldo: 20,
     historial: [],
   },
+  {
+    nombres: 'Marge Simpson',
+    correo: 'marge@mail.com',
+    contrasena: '123',
+    saldo: 20,
+    historial: [],
+  },
 ];
 
 function setAccount(account) {
@@ -26,7 +33,7 @@ function setHistorial() {
   let items = '';
 
   if (user.historial.length) {
-    user.historial.reverse().forEach((item) => {
+    user.historial.forEach((item) => {
       items += '';
       items += `
       <div class="historial-item d-flex justify-content-between">
@@ -34,14 +41,22 @@ function setHistorial() {
           <p>Operación: ${item.tipo}</p>
           ${
             item.tipo === 'transferencia'
-              ? '<p>Destino: ' + item.destino + '</p>'
+              ? '<p class="text-sm">Destino: ' + item.destino + '</p>'
+              : item.tipo === 'transferencia-ext'
+              ? '<p class="text-sm">Desde: ' + item.desde + '</p>'
               : ''
           }
         </div>
         <div>
           <span class="text-bold ${
-            item.tipo === 'deposito' ? 'text-success' : 'text-danger'
-          }">${item.tipo === 'deposito' ? '+' : '-'} U$D ${item.monto}</span>
+            item.tipo === 'deposito' || item.tipo === 'transferencia-ext'
+              ? 'text-success'
+              : 'text-danger'
+          }">${
+        item.tipo === 'deposito' || item.tipo === 'transferencia-ext'
+          ? '+'
+          : '-'
+      } U$D ${item.monto}</span>
           <p class="text-sm">${item.fecha}</p>
         </div>
       </div>

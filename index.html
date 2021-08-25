@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cajero Automático</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header class="width-full">
+      <nav>
+        <!-- <ul id="guest" class="d-flex justify-content-around">
+          <li class="nav-link pointer" data-view="login">Iniciar Sesion</li>
+          <li class="nav-link pointer" data-view="registro">Registrarse</li>
+        </ul> -->
+        <ul id="auth" class="d-flex justify-content-around">
+          <li class="nav-link pointer" data-view="cuenta">Mi cuenta</li>
+          <li class="nav-link pointer" data-view="deposito">Depósito</li>
+          <li class="nav-link pointer" data-view="retiro">Retirar dinero</li>
+          <li class="nav-link pointer" data-view="transferencia">
+            Transferencia
+          </li>
+          <li class="nav-link pointer" data-view="historial">Historial</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div id="login">
+        <h3>Iniciar Sesión</h3>
+        <form id="login-form">
+          <div class="form-field">
+            <label for="login-email">Correo:</label>
+            <input type="text" id="login-email" name="login-email" />
+          </div>
+          <div class="form-field">
+            <label for="login-password">Contraseña:</label>
+            <input type="password" id="login-password" name="login-password" />
+          </div>
+          <p>
+            Aún no tienes una cuenta?
+            <span class="nav-link link pointer" data-view="registro"
+              >Registrarse</span
+            >
+          </p>
+          <input
+            type="submit"
+            class="btn btn-primary text-light pointer"
+            value="Iniciar Sesión"
+          />
+        </form>
+      </div>
+      <div id="registro">
+        <h3>Crear una cuenta</h3>
+        <form id="register-form">
+          <div class="form-field">
+            <label class="text-secondary" for="registro-nombres"
+              >Nombres:</label
+            >
+            <input type="text" id="registro-nombres" name="registro-nombres" />
+          </div>
+          <div class="form-field">
+            <label for="registro-email">Correo:</label>
+            <input type="text" id="registro-email" name="registro-email" />
+          </div>
+          <div class="form-field">
+            <label for="registro-password">Contraseña:</label>
+            <input
+              type="text"
+              id="registro-password"
+              name="registro-password"
+            />
+          </div>
+          <div class="form-field">
+            <label for="registro-confirm-password">Confirmar contraseña:</label>
+            <input
+              type="password"
+              id="registro-confirm-password"
+              name="registro-confirm-password"
+            />
+          </div>
+          <p>
+            Ya tienes una cuenta?
+            <span class="nav-link link pointer" data-view="login"
+              >Iniciar Sesión</span
+            >
+          </p>
+          <input
+            type="submit"
+            class="btn btn-primary text-light pointer"
+            value="Registrarse"
+          />
+        </form>
+      </div>
+      <div id="cuenta">cuenta</div>
+      <div id="deposito">deposito</div>
+      <div id="retiro">retiro</div>
+      <div id="transferencia">transferencia</div>
+      <div id="historial">historial</div>
+    </main>
+    <script src="./js/global.js"></script>
+    <script src="./js/menu.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+@import url('./lib.css');
+
+/* Nav Styles */
+header nav {
+  width: 50%;
+  margin: auto;
+}
+
+header nav ul li {
+  padding: 10px;
+}
+
+/* Login Styles */
+#login h3,
+#registro h3 {
+  font-size: 2em;
+}
+
+#login form input[type='submit'],
+#registro form input[type='submit'] {
+  margin-top: 15px;
+  width: 100%;
+}

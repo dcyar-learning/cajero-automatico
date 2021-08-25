@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;300;400;700&display=swap');
+
+*,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 300;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.link {
+  color: blue;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.bg-primary {
+  color: #0d6efd;
+}
+.bg-secondary {
+  color: #6c757d;
+}
+.bg-success {
+  color: #198754;
+}
+.bg-danger {
+  color: #dc3545;
+}
+.bg-warning {
+  color: #ffc107;
+}
+.bg-info {
+  color: #0dcaf0;
+}
+.bg-dark {
+  color: #212529;
+}
+
+.text-primary {
+  color: #0d6efd;
+}
+.text-secondary {
+  color: #6c757d;
+}
+.text-success {
+  color: #198754;
+}
+.text-danger {
+  color: #dc3545;
+}
+.text-warning {
+  color: #ffc107;
+}
+.text-info {
+  color: #0dcaf0;
+}
+.text-dark {
+  color: #212529;
+}
+
+.text-thin {
+  font-weight: 100;
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+.text-normal {
+  font-weight: 400;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.form-field {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.form-field span,
+.form-field input {
+  display: block;
+  box-sizing: border-box;
+}
+
+.form-field input {
+  padding: 4px;
+  border-radius: 5px;
+  border: 1px solid #a7a7a7;
+  margin: 5px 0;
+  width: 100%;
+  font-weight: 300;
+}
+
+.btn {
+  padding: 8px 10px;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 300;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+}
+.btn-secondary {
+  background-color: #6c757d;
+}
+.btn-success {
+  background-color: #198754;
+}
+.btn-danger {
+  background-color: #dc3545;
+}
+.btn-warning {
+  background-color: #ffc107;
+}
+.btn-info {
+  background-color: #0dcaf0;
+}
+.btn-dark {
+  background-color: #212529;
+}
+
+.width-full {
+  width: 100%;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-around {
+  justify-content: space-around;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.justify-content-center {
+  justify-content: space-center;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline-block {
+  display: block;
+}

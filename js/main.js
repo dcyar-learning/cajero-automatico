@@ -1,191 +1,94 @@
-// Deposito
+import Auth from './oop/auth.js';
+import Atm from './oop/atm.js';
+import User from './oop/user.js';
+
+import { alertMessage, clearInputs } from './helpers.js';
+
+if (!localStorage.accounts) {
+  localStorage.setItem(
+    'accounts',
+    JSON.stringify([new User('Homero Sanchez', 'homero@mail.com', '123')])
+  );
+}
+
+var auth = new Auth();
+var atm = new Atm();
+
+if (localStorage.currentAccount) {
+  atm.printCurrentAccountData();
+  showView('historial');
+} else {
+  toggleMenu();
+  showView('login');
+}
+
 document
-  .getElementById('formDeposito')
+  .getElementById('login-form')
   .addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const depositMessage = document.getElementById('deposit-message');
-    const amount = this.elements['deposito-monto'];
+    const loginMessage = document.getElementById('login-messages');
 
-    if (!(user.saldo + parseInt(amount.value) <= 990)) {
-      alertMessage(
-        depositMessage,
-        'text-danger',
-        'Tu saldo no puede ser mayor a U$D 990',
-        3000
-      );
+    const email = this.elements['login-email'];
+    const password = this.elements['login-password'];
+
+    const response = auth.login(email.value, password.value);
+
+    if (response.status === 'error') {
+      alertMessage(loginMessage, 'error', response.message, 2500);
       return;
     }
 
-    user.saldo += parseInt(amount.value);
+    atm.currentAccount = response.data;
+    atm.printCurrentAccountData();
 
-    setUserCash();
+    alertMessage(loginMessage, 'success', response.message, 1500);
 
-    user.historial.push({
-      tipo: 'deposito',
-      destino: '',
-      monto: parseInt(amount.value),
-      fecha: new Date().toDateString(),
-    });
-
-    setHistorial();
-
-    alertMessage(
-      depositMessage,
-      'text-success',
-      `Se ha hecho el depósito de U$D ${amount.value} a tu cuenta.`,
-      3000
-    );
-
-    amount.value = 1;
+    setTimeout(() => {
+      clearInputs([email, password]);
+      toggleMenu();
+      showView('historial');
+    }, 1500);
   });
 
-// Retiro
 document
-  .getElementById('formRetiro')
+  .getElementById('register-form')
   .addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const retiroMessage = document.getElementById('retiro-message');
-    const amount = this.elements['retiro-monto'];
+    const registerMessage = document.getElementById('register-message');
 
-    if (parseInt(amount.value) > user.saldo) {
-      alertMessage(
-        retiroMessage,
-        'text-danger',
-        'No tienes el saldo suficiente',
-        2000
-      );
-      return;
-    }
+    const name = this.elements['register-name'];
+    const email = this.elements['register-email'];
+    const password = this.elements['register-password'];
+    const confirmPassword = this.elements['register-confirm-password'];
 
-    if (user.saldo - parseInt(amount.value) < 10) {
-      alertMessage(
-        retiroMessage,
-        'text-danger',
-        'Tu saldo no puede quedarse con menos de U$D 10',
-        2000
-      );
-      return;
-    }
-
-    user.saldo -= parseInt(amount.value);
-
-    setUserCash();
-
-    user.historial.push({
-      tipo: 'retiro',
-      destino: '',
-      monto: parseInt(amount.value),
-      fecha: new Date().toDateString(),
-    });
-
-    setHistorial();
-
-    alertMessage(
-      retiroMessage,
-      'text-success',
-      `Se ha hecho el retiro de U$D ${amount.value} correctmanete.`,
-      3000
+    const response = auth.register(
+      name.value,
+      email.value,
+      password.value,
+      confirmPassword.value
     );
 
-    amount.value = 1;
+    if (response.status === 'error') {
+      alertMessage(registerMessage, 'error', response.message, 2500);
+      return;
+    }
+
+    atm.currentAccount = response.data;
+    atm.printCurrentAccountData();
+
+    alertMessage(registerMessage, 'success', response.message, 1500);
+
+    setTimeout(() => {
+      clearInputs([name, email, password, confirmPassword]);
+      toggleMenu();
+      showView('historial');
+    }, 1500);
   });
 
-// Transferencia
-document
-  .getElementById('formTransferencia')
-  .addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const transferenciaMessage = document.getElementById(
-      'transferencia-message'
-    );
-
-    const to = this.elements['transferencia-destino'];
-    const amount = this.elements['transferencia-monto'];
-
-    if (to.value === '') {
-      alertMessage(
-        transferenciaMessage,
-        'text-danger',
-        'La cuenta de destino es obligatorio',
-        2000
-      );
-      return;
-    }
-
-    if (to.value === user.correo) {
-      alertMessage(
-        transferenciaMessage,
-        'text-danger',
-        'No puedes transferir dinero a tu propia cuenta',
-        2000
-      );
-      return;
-    }
-
-    const toAccount = cuentas.find((cuenta) => cuenta.correo === to.value);
-
-    if (!toAccount) {
-      alertMessage(
-        transferenciaMessage,
-        'text-danger',
-        'La cuenta de destino no existe',
-        2000
-      );
-      return;
-    }
-
-    if (user.saldo < parseInt(amount.value)) {
-      alertMessage(
-        transferenciaMessage,
-        'text-danger',
-        'No tienes tanto dinero :(',
-        2000
-      );
-      return;
-    }
-
-    if (user.saldo - parseInt(amount.value) < 10) {
-      alertMessage(
-        transferenciaMessage,
-        'text-danger',
-        'No puedes transferir tanto dinero',
-        2000
-      );
-      return;
-    }
-
-    user.saldo -= parseInt(amount.value);
-
-    setUserCash();
-
-    user.historial.push({
-      tipo: 'transferencia',
-      destino: to.value,
-      monto: parseInt(amount.value),
-      fecha: new Date().toDateString(),
-    });
-
-    setHistorial();
-
-    toAccount.saldo += parseInt(amount.value);
-
-    toAccount.historial.push({
-      tipo: 'transferencia-ext',
-      desde: user.correo,
-      monto: parseInt(amount.value),
-      fecha: new Date().toDateString(),
-    });
-
-    alertMessage(
-      transferenciaMessage,
-      'text-success',
-      `Se ha hecho la transferencia de U$D ${amount.value} a ${to.value}`,
-      2500
-    );
-
-    amount.value = 1;
-    to.value = '';
-  });
+document.getElementById('logout').addEventListener('click', function () {
+  showView('login');
+  toggleMenu();
+  auth.logout();
+});

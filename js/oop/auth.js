@@ -1,50 +1,86 @@
-class Auth {
-  constructor(alertMessageElement) {
-    this.user = null;
-    this.accounts = [
-      {
-        nombres: 'Homero Sanchez',
-        correo: 'homero@mail.com',
-        contrasena: '123',
-        saldo: 20,
-        historial: [],
-      },
-    ];
-    this.alertMessageElement = alertMessageElement;
-  }
+import User from './user.js';
 
-  get user() {
-    return this.user;
-  }
-
-  set user(value) {
-    this.user = value;
+export default class Auth {
+  constructor() {
+    this.accounts = JSON.parse(localStorage.getItem('accounts'));
   }
 
   login(email, password) {
     if (email == '' || password == '') {
-      alertMessage(
-        this.alertMessageElement,
-        'text-danger',
-        'Los campos de <b>correo</b> y <b>contraseña</b> son necesarios.',
-        2500
-      );
-      return;
+      return {
+        status: 'error',
+        message:
+          'Los cambios de <b>correo</b> y <b>contraseña</b> son necesarios',
+      };
     }
 
     const user = this.accounts.find(
-      (account) => account.correo === email && account.contrasena == password
+      (account) => account.email === email && account.password == password
     );
 
     if (!user) {
-      alertMessage(
-        this.alertMessageElement,
-        'text-danger',
-        'No existe una cuenta con estos datos.',
-        2500
-      );
+      return {
+        status: 'error',
+        message: 'No existe una cuenta con estos datos.',
+      };
     }
 
-    return user;
+    return {
+      status: 'success',
+      message: 'Iniciando sesión...',
+      data: user,
+    };
+  }
+
+  register(name, email, password, confirmPassword) {
+    if (
+      name === '' ||
+      email === '' ||
+      password === '' ||
+      confirmPassword === ''
+    ) {
+      return {
+        status: 'error',
+        message: 'Todos los campos son requeridos.',
+      };
+    }
+
+    if (this.accounts.find((account) => account.email === email)) {
+      return {
+        status: 'error',
+        message: 'Ya existe una cuenta con este correo.',
+      };
+    }
+
+    if (password != confirmPassword) {
+      return {
+        status: 'error',
+        message: 'Las contraseñas deben coincidir.',
+      };
+    }
+
+    const newAccount = new User(name, email, password);
+
+    this.accounts.push(newAccount);
+    this.updateAccounts(newAccount);
+
+    return {
+      status: 'success',
+      message: 'Registro exitoso, redirigiendo al cajero.',
+      data: newAccount,
+    };
+  }
+
+  logout() {
+    localStorage.removeItem('currentAccount');
+  }
+
+  updateAccounts(newAccount) {
+    const accountIndex = this.accounts.findIndex(
+      (account) => account.email === newAccount.email
+    );
+
+    this.accounts[accountIndex] = newAccount;
+    localStorage.setItem('accounts', JSON.stringify(this.accounts));
   }
 }

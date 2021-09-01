@@ -1,3 +1,5 @@
+const auth = new Auth();
+
 // Login Form
 document
   .getElementById('login-form')
@@ -6,9 +8,6 @@ document
 
     const email = this.elements['login-email'];
     const password = this.elements['login-password'];
-    const loginMessage = document.getElementById('login-messages');
-
-    const auth = new Auth(loginMessage);
 
     const currentUser = auth.login(email.value, password.value);
 

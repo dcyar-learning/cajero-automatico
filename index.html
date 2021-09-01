@@ -29,7 +29,12 @@
           <form id="login-form">
             <div class="form-field">
               <label for="login-email">Correo:</label>
-              <input type="email" id="login-email" name="login-email" />
+              <input
+                type="email"
+                id="login-email"
+                name="login-email"
+                value="homero@mail.com"
+              />
             </div>
             <div class="form-field">
               <label for="login-password">Contraseña:</label>
@@ -60,35 +65,43 @@
           <p id="register-message"></p>
           <form id="register-form">
             <div class="form-field">
-              <label for="registro-nombres">Nombres:</label>
+              <label for="register-name">Nombres:</label>
               <input
                 type="text"
-                id="registro-nombres"
-                name="registro-nombres"
+                id="register-name"
+                name="register-name"
+                value="Marge Simpson"
               />
             </div>
             <div class="form-field">
-              <label for="registro-email">Correo:</label>
-              <input type="text" id="registro-email" name="registro-email" />
+              <label for="register-email">Correo:</label>
+              <input
+                type="text"
+                id="register-email"
+                name="register-email"
+                value="marge@mail.com"
+              />
             </div>
             <div class="form-field">
-              <label for="registro-password">Contraseña:</label>
+              <label for="register-password">Contraseña:</label>
               <input
                 type="password"
-                id="registro-password"
-                name="registro-password"
+                id="register-password"
+                name="register-password"
                 minlength="3"
+                value="123"
               />
             </div>
             <div class="form-field">
-              <label for="registro-confirm-password"
+              <label for="register-confirm-password"
                 >Confirmar contraseña:</label
               >
               <input
                 type="password"
-                id="registro-confirm-password"
-                name="registro-confirm-password"
+                id="register-confirm-password"
+                name="register-confirm-password"
                 minlength="3"
+                value="123"
               />
             </div>
             <p>
@@ -214,10 +227,7 @@
         </section>
       </section>
     </main>
-    <script src="./js/global.js"></script>
     <script src="./js/menu.js"></script>
-    <script src="./js/oop/auth.js"></script>
-    <script src="./js/authv1.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js" type="module"></script>
   </body>
 </html>

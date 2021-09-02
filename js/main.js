@@ -1,14 +1,10 @@
 import Auth from './oop/auth.js';
 import Atm from './oop/atm.js';
-import User from './oop/user.js';
 
 import { alertMessage, clearInputs } from './helpers.js';
 
 if (!localStorage.accounts) {
-  localStorage.setItem(
-    'accounts',
-    JSON.stringify([new User('Homero Sanchez', 'homero@mail.com', '123')])
-  );
+  localStorage.setItem('accounts', JSON.stringify([]));
 }
 
 var auth = new Auth();
@@ -45,7 +41,7 @@ document
     alertMessage(loginMessage, 'success', response.message, 1500);
 
     setTimeout(() => {
-      clearInputs([email, password]);
+      clearInputs([email, password], '');
       toggleMenu();
       showView('historial');
     }, 1500);
@@ -81,7 +77,7 @@ document
     alertMessage(registerMessage, 'success', response.message, 1500);
 
     setTimeout(() => {
-      clearInputs([name, email, password, confirmPassword]);
+      clearInputs([name, email, password, confirmPassword], '');
       toggleMenu();
       showView('historial');
     }, 1500);
@@ -92,3 +88,76 @@ document.getElementById('logout').addEventListener('click', function () {
   toggleMenu();
   auth.logout();
 });
+
+document
+  .getElementById('formDeposito')
+  .addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const depositMessage = document.getElementById('deposit-message');
+    const amount = this.elements['deposito-monto'];
+
+    const response = atm.depositMoney(parseInt(amount.value));
+
+    if (response.status === 'error') {
+      alertMessage(depositMessage, 'error', response.message, 1500);
+      return;
+    }
+
+    auth.updateAccounts(atm.currentAccount);
+
+    alertMessage(depositMessage, 'success', response.message, 1500);
+    clearInputs([amount], 1);
+  });
+
+document
+  .getElementById('formRetiro')
+  .addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const retiroMessage = document.getElementById('retiro-message');
+    const amount = this.elements['retiro-monto'];
+
+    const response = atm.withdrawMoney(parseInt(amount.value));
+
+    if (response.status === 'error') {
+      alertMessage(retiroMessage, 'error', response.message, 1500);
+      return;
+    }
+
+    auth.updateAccounts(atm.currentAccount);
+
+    alertMessage(retiroMessage, 'success', response.message, 1500);
+    clearInputs([amount], 1);
+  });
+
+document
+  .getElementById('formTransferencia')
+  .addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const transferenciaMessage = document.getElementById(
+      'transferencia-message'
+    );
+
+    const to = this.elements['transferencia-destino'];
+    const amount = this.elements['transferencia-monto'];
+
+    const response = atm.transferMoney(
+      auth.accounts,
+      to.value,
+      parseInt(amount.value)
+    );
+
+    if (response.status === 'error') {
+      alertMessage(transferenciaMessage, 'error', response.message, 1500);
+      return;
+    }
+
+    auth.updateAccounts(atm.currentAccount);
+    auth.updateAccounts(response.data);
+
+    alertMessage(transferenciaMessage, 'success', response.message, 1500);
+    clearInputs([to], '');
+    clearInputs([amount], 1);
+  });

@@ -11,6 +11,6 @@ export function alertMessage(element, type, text, time = 1500) {
   }, time);
 }
 
-export function clearInputs(inputs) {
-  inputs.forEach((input) => (input.value = ''));
+export function clearInputs(inputs, value) {
+  inputs.forEach((input) => (input.value = value));
 }

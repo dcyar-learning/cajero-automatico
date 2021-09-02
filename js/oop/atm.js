@@ -1,3 +1,5 @@
+import Transaction from '../oop/transaction.js';
+
 export default class Atm {
   constructor() {
     this._currentAccount = localStorage.currentAccount
@@ -83,12 +85,12 @@ export default class Atm {
     }
 
     this.currentAccount.cash += amount;
-    this.currentAccount.transactionHistory.push({
-      tipo: 'deposito',
-      destino: '',
-      monto: amount,
-      fecha: new Date().toDateString(),
-    });
+    this.currentAccount.transactionHistory.push(
+      new Transaction({
+        tipo: 'deposito',
+        monto: amount,
+      })
+    );
 
     this.currentAccount = this.currentAccount;
     this.printCurrentAccountCash();
@@ -116,12 +118,12 @@ export default class Atm {
     }
 
     this.currentAccount.cash -= amount;
-    this.currentAccount.transactionHistory.push({
-      tipo: 'retiro',
-      destino: '',
-      monto: amount,
-      fecha: new Date().toDateString(),
-    });
+    this.currentAccount.transactionHistory.push(
+      new Transaction({
+        tipo: 'retiro',
+        monto: amount,
+      })
+    );
     this.currentAccount = this.currentAccount;
     this.printCurrentAccountCash();
     this.printTransactionHistory();
@@ -174,20 +176,29 @@ export default class Atm {
 
     // Validar que la cuenta de destino no tenga saldo mayor a U$D990
 
+    if (toAccount.cash + amount >= 990) {
+      return {
+        status: 'error',
+        message: `No puedes enviar tanto dinero a ${destinationAccount}`,
+      };
+    }
+
     this.currentAccount.cash -= amount;
-    this.currentAccount.transactionHistory.push({
-      tipo: 'transferencia',
-      destino: destinationAccount,
-      monto: amount,
-      fecha: new Date().toDateString(),
-    });
+    this.currentAccount.transactionHistory.push(
+      new Transaction({
+        tipo: 'transferencia',
+        destino: destinationAccount,
+        monto: amount,
+      })
+    );
     toAccount.cash += amount;
-    toAccount.transactionHistory.push({
-      tipo: 'transferencia-ext',
-      desde: this.currentAccount.email,
-      monto: amount,
-      fecha: new Date().toDateString(),
-    });
+    toAccount.transactionHistory.push(
+      new Transaction({
+        tipo: 'transferencia-ext',
+        desde: this.currentAccount.email,
+        monto: amount,
+      })
+    );
 
     this.currentAccount = this.currentAccount;
 

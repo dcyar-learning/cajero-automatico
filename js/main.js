@@ -41,7 +41,7 @@ document
     alertMessage(loginMessage, 'success', response.message, 1500);
 
     setTimeout(() => {
-      clearInputs([email, password], '');
+      clearInputs([email], '');
       toggleMenu();
       showView('historial');
     }, 1500);
@@ -77,7 +77,7 @@ document
     alertMessage(registerMessage, 'success', response.message, 1500);
 
     setTimeout(() => {
-      clearInputs([name, email, password, confirmPassword], '');
+      clearInputs([name, email], '');
       toggleMenu();
       showView('historial');
     }, 1500);
